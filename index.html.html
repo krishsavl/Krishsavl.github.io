@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Krish Savla — Developer & ML Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --bg:#0c0f0e;
+    --bg2:#111715;
+    --bg3:#161c1a;
+    --accent:#00e5b0;
+    --accent2:#00b88a;
+    --accent-dim:rgba(0,229,176,0.12);
+    --text:#e8f0ec;
+    --text2:#8fa89f;
+    --text3:#4a6059;
+    --border:rgba(0,229,176,0.15);
+    --border2:rgba(255,255,255,0.06);
+    --card:#131918;
+    --r:10px;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'DM Sans',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar{width:4px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:var(--accent2);border-radius:2px;}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:1.2rem 4rem;
+    background:rgba(12,15,14,0.85);
+    backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--border2);
+  }
+  .nav-logo{
+    font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:800;
+    color:var(--accent);letter-spacing:0.04em;
+  }
+  .nav-links{display:flex;gap:2.5rem;list-style:none;}
+  .nav-links a{
+    font-family:'DM Mono',monospace;font-size:0.78rem;
+    color:var(--text2);text-decoration:none;
+    transition:color 0.2s;letter-spacing:0.05em;
+  }
+  .nav-links a:hover{color:var(--accent);}
+  .nav-cta{
+    font-family:'DM Mono',monospace;font-size:0.78rem;
+    color:var(--accent);text-decoration:none;
+    border:1px solid var(--border);padding:0.45rem 1.1rem;
+    border-radius:4px;transition:all 0.2s;letter-spacing:0.05em;
+  }
+  .nav-cta:hover{background:var(--accent-dim);}
+
+  /* HERO */
+  #hero{
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:8rem 4rem 4rem;
+    position:relative;overflow:hidden;
+  }
+  .hero-grid{
+    position:absolute;inset:0;
+    background-image:
+      linear-gradient(var(--border2) 1px,transparent 1px),
+      linear-gradient(90deg,var(--border2) 1px,transparent 1px);
+    background-size:60px 60px;
+    mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 30%,transparent 100%);
+  }
+  .hero-tag{
+    font-family:'DM Mono',monospace;font-size:0.75rem;
+    color:var(--accent);letter-spacing:0.12em;
+    margin-bottom:1.5rem;
+    display:flex;align-items:center;gap:0.75rem;
+  }
+  .hero-tag::before{
+    content:'';display:block;
+    width:2rem;height:1px;background:var(--accent);
+  }
+  .hero-name{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(3.5rem,9vw,7.5rem);
+    font-weight:800;line-height:0.9;
+    letter-spacing:-0.03em;
+    margin-bottom:0.25rem;
+  }
+  .hero-name span{color:var(--accent);}
+  .hero-role{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(1.2rem,3vw,2rem);
+    font-weight:400;color:var(--text2);
+    margin-bottom:2.5rem;
+    letter-spacing:-0.01em;
+  }
+  .hero-desc{
+    max-width:520px;
+    font-size:1rem;color:var(--text2);
+    line-height:1.8;margin-bottom:3rem;
+  }
+  .hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+  .btn-primary{
+    font-family:'DM Mono',monospace;font-size:0.85rem;
+    background:var(--accent);color:#0c0f0e;
+    padding:0.75rem 2rem;border-radius:4px;
+    text-decoration:none;font-weight:500;
+    letter-spacing:0.05em;transition:all 0.2s;
+  }
+  .btn-primary:hover{background:var(--accent2);transform:translateY(-2px);}
+  .btn-ghost{
+    font-family:'DM Mono',monospace;font-size:0.85rem;
+    border:1px solid var(--border);color:var(--text);
+    padding:0.75rem 2rem;border-radius:4px;
+    text-decoration:none;letter-spacing:0.05em;
+    transition:all 0.2s;
+  }
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+  .hero-scroll{
+    position:absolute;bottom:2.5rem;left:4rem;
+    font-family:'DM Mono',monospace;font-size:0.7rem;
+    color:var(--text3);letter-spacing:0.1em;
+    display:flex;align-items:center;gap:1rem;
+    animation:fadeup 1s ease 1s both;
+  }
+  .hero-scroll::after{
+    content:'';display:block;
+    width:3rem;height:1px;background:var(--text3);
+  }
+  .hero-stat-row{
+    display:flex;gap:3rem;margin-top:4rem;
+    padding-top:2rem;border-top:1px solid var(--border2);
+  }
+  .hero-stat span:first-child{
+    display:block;
+    font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;
+    color:var(--accent);
+  }
+  .hero-stat span:last-child{
+    font-size:0.8rem;color:var(--text3);
+    font-family:'DM Mono',monospace;letter-spacing:0.05em;
+  }
+
+  /* SECTION WRAPPER */
+  section{padding:6rem 4rem;}
+  .section-tag{
+    font-family:'DM Mono',monospace;font-size:0.75rem;
+    color:var(--accent);letter-spacing:0.12em;margin-bottom:1rem;
+    display:flex;align-items:center;gap:0.75rem;
+  }
+  .section-tag::before{content:'//';color:var(--text3);}
+  .section-title{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(2rem,5vw,3.5rem);font-weight:800;
+    letter-spacing:-0.02em;margin-bottom:1rem;line-height:1;
+  }
+  .section-sub{color:var(--text2);max-width:480px;font-size:0.95rem;}
+
+  /* ABOUT */
+  #about{background:var(--bg2);}
+  .about-grid{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:4rem;margin-top:4rem;align-items:start;
+  }
+  .about-text p{color:var(--text2);margin-bottom:1.2rem;font-size:0.95rem;}
+  .about-text p strong{color:var(--text);}
+  .about-edu{
+    background:var(--card);border:1px solid var(--border2);
+    border-radius:var(--r);padding:2rem;
+  }
+  .edu-item{
+    padding:1.25rem 0;border-bottom:1px solid var(--border2);
+  }
+  .edu-item:last-child{border-bottom:none;padding-bottom:0;}
+  .edu-deg{
+    font-family:'Syne',sans-serif;font-size:1rem;font-weight:600;
+    margin-bottom:0.25rem;
+  }
+  .edu-school{font-size:0.85rem;color:var(--accent);font-family:'DM Mono',monospace;}
+  .edu-year{font-size:0.75rem;color:var(--text3);font-family:'DM Mono',monospace;margin-top:0.25rem;}
+
+  /* SKILLS */
+  #skills{background:var(--bg);}
+  .skills-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:1.5rem;margin-top:3.5rem;
+  }
+  .skill-card{
+    background:var(--card);border:1px solid var(--border2);
+    border-radius:var(--r);padding:1.75rem;
+    transition:border-color 0.3s,transform 0.2s;
+  }
+  .skill-card:hover{border-color:var(--border);transform:translateY(-3px);}
+  .skill-cat{
+    font-family:'DM Mono',monospace;font-size:0.7rem;
+    color:var(--accent);letter-spacing:0.12em;margin-bottom:1rem;
+  }
+  .skill-name{
+    font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;
+    margin-bottom:1rem;
+  }
+  .skill-tags{display:flex;flex-wrap:wrap;gap:0.5rem;}
+  .tag{
+    font-family:'DM Mono',monospace;font-size:0.72rem;
+    color:var(--text2);background:rgba(255,255,255,0.04);
+    border:1px solid var(--border2);padding:0.3rem 0.7rem;
+    border-radius:3px;letter-spacing:0.03em;
+  }
+
+  /* PROJECTS */
+  #projects{background:var(--bg2);}
+  .projects-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:1.5rem;margin-top:3.5rem;
+  }
+  .proj-card{
+    background:var(--card);border:1px solid var(--border2);
+    border-radius:var(--r);padding:2rem;
+    display:flex;flex-direction:column;
+    transition:all 0.3s;position:relative;overflow:hidden;
+  }
+  .proj-card::before{
+    content:'';position:absolute;top:0;left:0;right:0;height:2px;
+    background:linear-gradient(90deg,transparent,var(--accent),transparent);
+    opacity:0;transition:opacity 0.3s;
+  }
+  .proj-card:hover{border-color:var(--border);transform:translateY(-4px);}
+  .proj-card:hover::before{opacity:1;}
+  .proj-num{
+    font-family:'DM Mono',monospace;font-size:0.7rem;
+    color:var(--text3);letter-spacing:0.1em;margin-bottom:1rem;
+  }
+  .proj-title{
+    font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;
+    margin-bottom:0.75rem;line-height:1.2;
+  }
+  .proj-desc{
+    font-size:0.88rem;color:var(--text2);line-height:1.7;
+    flex:1;margin-bottom:1.5rem;
+  }
+  .proj-stack{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.5rem;}
+  .proj-stack .tag{font-size:0.68rem;}
+  .proj-link{
+    font-family:'DM Mono',monospace;font-size:0.78rem;
+    color:var(--accent);text-decoration:none;
+    display:inline-flex;align-items:center;gap:0.5rem;
+    letter-spacing:0.05em;transition:gap 0.2s;
+  }
+  .proj-link:hover{gap:0.75rem;}
+  .proj-featured{
+    grid-column:1/-1;
+    display:grid;grid-template-columns:1fr 1fr;
+  }
+  .proj-featured .proj-inner{padding:2rem;}
+  .proj-featured-badge{
+    font-family:'DM Mono',monospace;font-size:0.7rem;
+    background:var(--accent-dim);color:var(--accent);
+    border:1px solid var(--border);padding:0.25rem 0.6rem;
+    border-radius:3px;letter-spacing:0.08em;
+    display:inline-block;margin-bottom:1rem;
+  }
+  .proj-visual{
+    background:linear-gradient(135deg,#0d1f1a 0%,#091412 100%);
+    border-left:1px solid var(--border2);
+    display:flex;align-items:center;justify-content:center;
+    border-radius:0 var(--r) var(--r) 0;
+    min-height:220px;
+    position:relative;overflow:hidden;
+  }
+  .proj-visual svg{opacity:0.5;}
+
+  /* CONTACT */
+  #contact{background:var(--bg);}
+  .contact-inner{
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:4rem;margin-top:4rem;
+  }
+  .contact-left p{color:var(--text2);margin-bottom:2rem;font-size:0.95rem;}
+  .contact-links{display:flex;flex-direction:column;gap:1rem;}
+  .contact-link{
+    display:flex;align-items:center;gap:1rem;
+    font-family:'DM Mono',monospace;font-size:0.85rem;
+    color:var(--text2);text-decoration:none;
+    transition:color 0.2s;
+  }
+  .contact-link:hover{color:var(--accent);}
+  .contact-link .icon{
+    width:36px;height:36px;border-radius:6px;
+    background:var(--card);border:1px solid var(--border2);
+    display:flex;align-items:center;justify-content:center;
+    font-size:0.9rem;flex-shrink:0;transition:border-color 0.2s;
+  }
+  .contact-link:hover .icon{border-color:var(--border);}
+  .contact-right{
+    background:var(--card);border:1px solid var(--border2);
+    border-radius:var(--r);padding:2.5rem;
+  }
+  .contact-right p{
+    font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:700;
+    line-height:1.2;margin-bottom:1.5rem;
+  }
+  .contact-right p span{color:var(--accent);}
+
+  /* FOOTER */
+  footer{
+    padding:2rem 4rem;
+    border-top:1px solid var(--border2);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  footer p{font-size:0.78rem;color:var(--text3);font-family:'DM Mono',monospace;}
+
+  /* CURSOR */
+  .cursor{
+    width:8px;height:8px;background:var(--accent);
+    border-radius:50%;display:inline-block;
+    animation:blink 1s step-end infinite;
+    margin-left:2px;
+  }
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+  /* ANIMATE */
+  @keyframes fadeup{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+  .fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+  .fade-in.visible{opacity:1;transform:translateY(0);}
+  .hero-name{animation:fadeup 0.8s ease 0.1s both;}
+  .hero-role{animation:fadeup 0.8s ease 0.25s both;}
+  .hero-desc{animation:fadeup 0.8s ease 0.4s both;}
+  .hero-btns{animation:fadeup 0.8s ease 0.55s both;}
+  .hero-stat-row{animation:fadeup 0.8s ease 0.7s both;}
+
+  /* MOBILE */
+  @media(max-width:900px){
+    nav{padding:1rem 1.5rem;}
+    .nav-links{display:none;}
+    section,#hero{padding:5rem 1.5rem;}
+    .about-grid,.contact-inner,.proj-featured{grid-template-columns:1fr;}
+    .proj-featured{grid-column:auto;}
+    .proj-visual{display:none;}
+    .hero-stat-row{flex-wrap:wrap;gap:1.5rem;}
+    footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem 1.5rem;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">KS<span style="color:var(--text3)">.</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">about</a></li>
+    <li><a href="#skills">skills</a></li>
+    <li><a href="#projects">projects</a></li>
+    <li><a href="#contact">contact</a></li>
+  </ul>
+  <a href="mailto:savlakrish8@email.com" class="nav-cta">hire me →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-tag">AVAILABLE FOR OPPORTUNITIES</div>
+  <h1 class="hero-name">Krish<br/><span>Savla</span></h1>
+  <div class="hero-role">ML Engineer &amp; Full-Stack Dev<span class="cursor"></span></div>
+  <p class="hero-desc">
+    Final-year B.Tech CSE student at CMR Technical Campus, Hyderabad.
+    I build intelligent systems — from deep learning models to full-stack applications —
+    turning data into decisions.
+  </p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-primary">view my work</a>
+    <a href="https://github.com/krishsavl" target="_blank" class="btn-ghost">github ↗</a>
+  </div>
+  <div class="hero-stat-row">
+    <div class="hero-stat">
+      <span>6+</span>
+      <span>PROJECTS SHIPPED</span>
+    </div>
+    <div class="hero-stat">
+      <span>3+</span>
+      <span>ML/DL MODELS</span>
+    </div>
+    <div class="hero-stat">
+      <span>2027</span>
+      <span>GRADUATING</span>
+    </div>
+  </div>
+  <div class="hero-scroll">scroll down</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-tag">ABOUT ME</div>
+  <h2 class="section-title fade-in">Who I am</h2>
+  <div class="about-grid">
+    <div class="about-text fade-in">
+      <p>
+        I'm a <strong>Python-focused developer</strong> passionate about machine learning,
+        deep learning, and building end-to-end applications. I love the intersection
+        of data science and full-stack development.
+      </p>
+      <p>
+        Currently completing my <strong>B.Tech in Computer Science</strong> at CMR Technical Campus,
+        where my coursework spans software testing, formal languages &amp; automata theory,
+        machine learning, and full-stack development.
+      </p>
+      <p>
+        My projects range from <strong>real-time object detection with YOLO</strong> to
+        <strong>ECG signal restoration using CycleGAN</strong>, reflecting my interest in
+        applying cutting-edge AI to real-world problems.
+      </p>
+      <p>
+        When I'm not coding, I'm exploring new AI research, contributing to
+        open source, or experimenting with generative AI tools.
+      </p>
+      <div style="margin-top:2rem;">
+        <a href="https://www.linkedin.com/in/krish-savla-569986306/" target="_blank" class="btn-ghost" style="display:inline-block;">LinkedIn profile ↗</a>
+      </div>
+    </div>
+    <div class="about-edu fade-in">
+      <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.12em;margin-bottom:1.5rem;">EDUCATION</div>
+      <div class="edu-item">
+        <div class="edu-deg">B.Tech — Computer Science &amp; Engineering</div>
+        <div class="edu-school">CMR Technical Campus, Hyderabad</div>
+        <div class="edu-year">2023 — 2027</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-deg">Higher Secondary (School)</div>
+        <div class="edu-school">Vidya Bhumi Public School, Chhindwara, MP</div>
+        <div class="edu-year">2008 — 2023</div>
+      </div>
+      <div style="margin-top:1.5rem;padding:1rem;background:var(--accent-dim);border:1px solid var(--border);border-radius:6px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.08em;margin-bottom:0.4rem;">LANGUAGES</div>
+        <div style="font-size:0.85rem;color:var(--text2);">English &nbsp;·&nbsp; Hindi &nbsp;·&nbsp; Telugu</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-tag">WHAT I KNOW</div>
+  <h2 class="section-title fade-in">Skills &amp; Stack</h2>
+  <p class="section-sub fade-in">Technologies I work with across ML, data science, and full-stack development.</p>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <div class="skill-cat">CORE LANGUAGES</div>
+      <div class="skill-name">Programming</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span><span class="tag">Java</span>
+        <span class="tag">C</span><span class="tag">JavaScript</span><span class="tag">SQL</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-cat">MACHINE LEARNING</div>
+      <div class="skill-name">AI / ML / DL</div>
+      <div class="skill-tags">
+        <span class="tag">TensorFlow</span><span class="tag">PyTorch</span>
+        <span class="tag">OpenCV</span><span class="tag">Scikit-learn</span>
+        <span class="tag">YOLO</span><span class="tag">GANs</span><span class="tag">GenAI</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-cat">DATA SCIENCE</div>
+      <div class="skill-name">Data &amp; Analytics</div>
+      <div class="skill-tags">
+        <span class="tag">Pandas</span><span class="tag">NumPy</span>
+        <span class="tag">Matplotlib</span><span class="tag">Seaborn</span>
+        <span class="tag">Data Visualization</span><span class="tag">EDA</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-cat">WEB &amp; BACKEND</div>
+      <div class="skill-name">Full-Stack</div>
+      <div class="skill-tags">
+        <span class="tag">Flask</span><span class="tag">Django</span>
+        <span class="tag">React.js</span><span class="tag">Node.js</span>
+        <span class="tag">HTML</span><span class="tag">CSS</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-cat">DATABASES</div>
+      <div class="skill-name">Storage</div>
+      <div class="skill-tags">
+        <span class="tag">MongoDB</span><span class="tag">MySQL</span>
+        <span class="tag">PostgreSQL</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-cat">TOOLS &amp; PLATFORMS</div>
+      <div class="skill-name">DevOps &amp; More</div>
+      <div class="skill-tags">
+        <span class="tag">Git</span><span class="tag">GitHub</span>
+        <span class="tag">Flutter</span><span class="tag">DevOps Tools</span>
+        <span class="tag">REST APIs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-tag">WHAT I'VE BUILT</div>
+  <h2 class="section-title fade-in">Projects</h2>
+  <p class="section-sub fade-in">A selection of work spanning deep learning, computer vision, and full-stack applications.</p>
+  <div class="projects-grid" style="margin-top:3.5rem;">
+
+    <!-- Featured: ECG -->
+    <div class="proj-card proj-featured fade-in">
+      <div class="proj-inner" style="padding:2rem;">
+        <div class="proj-num">01 — DEEP LEARNING</div>
+        <div class="proj-title">ECG Restoration<br/>using CycleGAN</div>
+        <p class="proj-desc">
+          Blind ECG signal restoration using Operational CycleGAN architecture. The model reconstructs clean cardiac signals from corrupted ECG data, leveraging unpaired image-to-image translation without clean reference signals during training.
+        </p>
+        <div class="proj-stack">
+          <span class="tag">Python</span><span class="tag">PyTorch</span>
+          <span class="tag">CycleGAN</span><span class="tag">Signal Processing</span>
+          <span class="tag">Deep Learning</span>
+        </div>
+        <a href="https://github.com/krishsavl/ECG-Restoration-using-GANS" target="_blank" class="proj-link">view on github →</a>
+      </div>
+      <div class="proj-visual">
+        <svg width="180" height="120" viewBox="0 0 180 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="0,60 30,60 40,20 50,100 60,60 80,60 90,40 100,80 110,60 150,60 160,30 170,90 180,60"
+            stroke="#00e5b0" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- YOLO -->
+    <div class="proj-card fade-in">
+      <div class="proj-num">02 — COMPUTER VISION</div>
+      <div class="proj-title">Real-Time Object Detection</div>
+      <p class="proj-desc">
+        Implements real-time object detection using the YOLO (You Only Look Once) algorithm. Detects multiple objects in images and video streams with high accuracy and speed using deep learning and computer vision techniques.
+      </p>
+      <div class="proj-stack">
+        <span class="tag">Python</span><span class="tag">YOLO</span>
+        <span class="tag">OpenCV</span><span class="tag">Deep Learning</span>
+      </div>
+      <a href="https://github.com/krishsavl/object-detection" target="_blank" class="proj-link">view on github →</a>
+    </div>
+
+    <!-- Expedia -->
+    <div class="proj-card fade-in">
+      <div class="proj-num">03 — WEB APP</div>
+      <div class="proj-title">Expedia — Your Travel Agent</div>
+      <p class="proj-desc">
+        A full-featured travel planning web app that helps users plan complete trips based on destination and budget. Provides nearby stay options, ticket booking suggestions, and generates full-day travel itineraries using live API data.
+      </p>
+      <div class="proj-stack">
+        <span class="tag">HTML</span><span class="tag">CSS</span>
+        <span class="tag">JavaScript</span><span class="tag">REST APIs</span>
+      </div>
+      <a href="https://github.com/krishsavl/expedia-project" target="_blank" class="proj-link">view on github →</a>
+    </div>
+
+    <!-- Food Ordering -->
+    <div class="proj-card fade-in">
+      <div class="proj-num">04 — FULL-STACK</div>
+      <div class="proj-title">Food Ordering System</div>
+      <p class="proj-desc">
+        A full-stack food ordering platform with QR code integration. Built with the MERN stack (MongoDB, Express, React, Node) and a Flask backend variant. Features real-time order tracking and an intuitive restaurant menu UI.
+      </p>
+      <div class="proj-stack">
+        <span class="tag">React.js</span><span class="tag">Node.js</span>
+        <span class="tag">MongoDB</span><span class="tag">Flask</span><span class="tag">QR Code</span>
+      </div>
+      <a href="https://github.com/krishsavl/krishproject" target="_blank" class="proj-link">view on github →</a>
+    </div>
+
+    <!-- Movie Rec -->
+    <div class="proj-card fade-in">
+      <div class="proj-num">05 — MACHINE LEARNING</div>
+      <div class="proj-title">AI Movie Recommendation System</div>
+      <p class="proj-desc">
+        Content-based movie recommendation engine using TF-IDF Vectorization and Cosine Similarity on the TMDB 5000 dataset. Recommends films based on genres, keywords, cast, and plot similarity.
+      </p>
+      <div class="proj-stack">
+        <span class="tag">Python</span><span class="tag">Scikit-learn</span>
+        <span class="tag">TF-IDF</span><span class="tag">Pandas</span><span class="tag">TMDB</span>
+      </div>
+      <a href="https://github.com/krishsavl/project1" target="_blank" class="proj-link">view on github →</a>
+    </div>
+
+    <!-- E-Commerce Fraud Detection -->
+    <div class="proj-card fade-in">
+      <div class="proj-num">06 — MACHINE LEARNING</div>
+      <div class="proj-title">E-Commerce Fraud Detection</div>
+      <p class="proj-desc">
+        A machine learning system to detect fraudulent transactions in e-commerce platforms. Uses classification algorithms to identify anomalous patterns in transaction data, helping businesses minimize financial losses from fraud.
+      </p>
+      <div class="proj-stack">
+        <span class="tag">Python</span><span class="tag">Scikit-learn</span>
+        <span class="tag">Pandas</span><span class="tag">Classification</span><span class="tag">Anomaly Detection</span>
+      </div>
+      <a href="https://github.com/krishsavl" target="_blank" class="proj-link">view on github →</a>
+    </div>
+
+    <!-- Blood Spatter Analysis -->
+    <div class="proj-card fade-in">
+      <div class="proj-num">07 — COMPUTER VISION</div>
+      <div class="proj-title">Blood Spatter Analysis</div>
+      <p class="proj-desc">
+        A computer vision project that analyzes blood spatter patterns to assist forensic investigations. Uses image processing and pattern recognition techniques to determine impact angles, origin points, and event sequences from spatter data.
+      </p>
+      <div class="proj-stack">
+        <span class="tag">Python</span><span class="tag">OpenCV</span>
+        <span class="tag">Image Processing</span><span class="tag">Forensics</span><span class="tag">Pattern Recognition</span>
+      </div>
+      <a href="https://github.com/krishsavl" target="_blank" class="proj-link">view on github →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag">GET IN TOUCH</div>
+  <h2 class="section-title fade-in">Let's work together</h2>
+  <div class="contact-inner">
+    <div class="contact-left fade-in">
+      <p>
+        I'm currently open to internship and entry-level opportunities in
+        machine learning, data science, and full-stack development.
+        Whether it's a project, a role, or just a conversation — I'm all ears.
+      </p>
+      <div class="contact-links">
+        <a href="mailto:savlakrish8@email.com" class="contact-link">
+          <div class="icon">✉</div>
+          savlakrish8@email.com
+        </a>
+        <a href="tel:+919701111518" class="contact-link">
+          <div class="icon">☎</div>
+          +91 97011 11518
+        </a>
+        <a href="https://github.com/krishsavl" target="_blank" class="contact-link">
+          <div class="icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </div>
+          github.com/krishsavl
+        </a>
+        <a href="https://www.linkedin.com/in/krish-savla-569986306/" target="_blank" class="contact-link">
+          <div class="icon">in</div>
+          linkedin.com/in/krish-savla
+        </a>
+      </div>
+    </div>
+    <div class="contact-right fade-in">
+      <p>Ready to build something <span>meaningful</span> together?</p>
+      <p style="font-size:0.9rem;color:var(--text2);margin-bottom:1.5rem;font-family:'DM Sans',sans-serif;font-weight:400;">
+        Drop me an email and I'll get back to you within 24 hours. Open to full-time roles, internships, and collaborations.
+      </p>
+      <a href="mailto:savlakrish8@email.com" class="btn-primary" style="display:inline-block;">send me an email →</a>
+      <div style="margin-top:2rem;padding:1.25rem;background:var(--accent-dim);border:1px solid var(--border);border-radius:6px;">
+        <div style="font-family:'DM Mono',monospace;font-size:0.7rem;color:var(--accent);letter-spacing:0.08em;margin-bottom:0.5rem;">LOCATION</div>
+        <div style="font-size:0.9rem;color:var(--text2);">📍 Hyderabad, Telangana, India</div>
+        <div style="font-size:0.8rem;color:var(--text3);margin-top:0.25rem;font-family:'DM Mono',monospace;">Open to remote &amp; relocation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Krish Savla · Built with ❤️ and caffeine</p>
+  <p>
+    <a href="https://github.com/krishsavl" target="_blank" style="color:var(--text3);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">github</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.linkedin.com/in/krish-savla-569986306/" target="_blank" style="color:var(--text3);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text3)'">linkedin</a>
+  </p>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:0.15});
+document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
